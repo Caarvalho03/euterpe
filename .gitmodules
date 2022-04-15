@@ -1,0 +1,3 @@
+[submodule "viniciusql"]
+	path = viniciusql
+	url = git@github.com:Caarvalho03/viniciusql.git
