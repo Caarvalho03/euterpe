@@ -3,7 +3,6 @@
 
 Database::Database()
 {
-
 }
 
 void Database::createConnection()
