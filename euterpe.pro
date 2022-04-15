@@ -27,3 +27,16 @@ HEADERS += \
     initialization.h \
     logic/database/database.h \
     logic/database/models/audio.h
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../build-viniciusql-Desktop_Qt_5_15_2_MinGW_64_bit-Release/release/ -lviniciusql
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../build-viniciusql-Desktop_Qt_5_15_2_MinGW_64_bit-Release/debug/ -lviniciusql
+else:unix: LIBS += -L$$PWD/../build-viniciusql-Desktop_Qt_5_15_2_MinGW_64_bit-Release/ -lviniciusql
+
+INCLUDEPATH += $$PWD/../build-viniciusql-Desktop_Qt_5_15_2_MinGW_64_bit-Release/release
+DEPENDPATH += $$PWD/../build-viniciusql-Desktop_Qt_5_15_2_MinGW_64_bit-Release/release
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../build-viniciusql-Desktop_Qt_5_15_2_MinGW_64_bit-Release/release/libviniciusql.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../build-viniciusql-Desktop_Qt_5_15_2_MinGW_64_bit-Release/debug/libviniciusql.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../build-viniciusql-Desktop_Qt_5_15_2_MinGW_64_bit-Release/release/viniciusql.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../build-viniciusql-Desktop_Qt_5_15_2_MinGW_64_bit-Release/debug/viniciusql.lib
+else:unix: PRE_TARGETDEPS += $$PWD/../build-viniciusql-Desktop_Qt_5_15_2_MinGW_64_bit-Release/libviniciusql.a
