@@ -1,4 +1,4 @@
-QT += quick quickcontrols2 sql
+QT += quick quickcontrols2 sql core
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -8,6 +8,7 @@ SOURCES += \
         initialization.cpp \
         logic/database/database.cpp \
         logic/database/models/audio.cpp \
+        logic/database/models/playlist.cpp \
         main.cpp
 
 RESOURCES += qml.qrc
@@ -26,7 +27,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     initialization.h \
     logic/database/database.h \
-    logic/database/models/audio.h
+    logic/database/models/audio.h \
+    logic/database/models/playlist.h
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../build-viniciusql-Desktop_Qt_5_15_2_MinGW_64_bit-Release/release/ -lviniciusql
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../build-viniciusql-Desktop_Qt_5_15_2_MinGW_64_bit-Release/debug/ -lviniciusql

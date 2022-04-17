@@ -9,9 +9,8 @@ Window{
     width: 1440
     height: 1024
     maximumHeight: 1024
-    //minimumHeight: height
     maximumWidth: 1440
-    //minimumWidth: width
+    minimumWidth: 665
     visible: true
     title: qsTr("Hello World")
 
@@ -55,7 +54,7 @@ Window{
 
     StackView{
         id:routes
-        initialItem: "qrc:/view/screens/songsPage.qml"
+        initialItem: "qrc:/view/screens/playlistsPage.qml"
         anchors{
             left: divider.right
             top: parent.top

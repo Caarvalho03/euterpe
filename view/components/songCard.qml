@@ -64,7 +64,6 @@ Item{
                     left: positionSlider.right
                     leftMargin: 37
                     verticalCenter: parent.verticalCenter
-
                 }
             }
             ColorOverlay{

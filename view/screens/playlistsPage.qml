@@ -14,18 +14,18 @@ Item {
     }
 
     Component.onCompleted:{
-        moreListenedPlaylistModel.append({"color":"red"})
-        moreListenedPlaylistModel.append({"color":"red"})
-        moreListenedPlaylistModel.append({"color":"red"})
-        moreListenedPlaylistModel.append({"color":"red"})
-        moreListenedPlaylistModel.append({"color":"red"})
-        moreListenedPlaylistModel.append({"color":"red"})
-        moreListenedPlaylistModel.append({"color":"red"})
-        moreListenedPlaylistModel.append({"color":"red"})
-        moreListenedPlaylistModel.append({"color":"red"})
-        moreListenedPlaylistModel.append({"color":"red"})
-        moreListenedPlaylistModel.append({"color":"red"})
-        moreListenedPlaylistModel.append({"color":"red"})
+//        moreListenedPlaylistModel.append({"color":"red"})
+//        moreListenedPlaylistModel.append({"color":"red"})
+//        moreListenedPlaylistModel.append({"color":"red"})
+//        moreListenedPlaylistModel.append({"color":"red"})
+//        moreListenedPlaylistModel.append({"color":"red"})
+//        moreListenedPlaylistModel.append({"color":"red"})
+//        moreListenedPlaylistModel.append({"color":"red"})
+//        moreListenedPlaylistModel.append({"color":"red"})
+//        moreListenedPlaylistModel.append({"color":"red"})
+//        moreListenedPlaylistModel.append({"color":"red"})
+//        moreListenedPlaylistModel.append({"color":"red"})
+//        moreListenedPlaylistModel.append({"color":"red"})
     }
 
     Rectangle{
@@ -83,7 +83,7 @@ Item {
             orientation: ListView.Horizontal
             clip:true
             boundsBehavior:Flickable.StopAtBounds
-            model:moreListenedPlaylistModel
+            model:suggestionsPlaylistModel
             delegate: Loader{
                 source: "qrc:/view/components/playlistCard.qml"
             }

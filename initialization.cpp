@@ -1,4 +1,5 @@
 #include "initialization.h"
+#include "../viniciusql/viniciusql.h""
 
 Initialization::Initialization()
 {

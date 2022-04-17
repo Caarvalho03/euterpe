@@ -4,6 +4,7 @@ import QtQml.Models 2.15
 
 Item {
     id:songPages
+    width: parent.width
 
     ListModel{
         id:songsModel
@@ -23,6 +24,7 @@ Item {
         songsModel.append({"color":"blue"})
         songsModel.append({"color":"blue"})
     }
+
     Rectangle{
         id:background
         anchors.fill: parent
@@ -66,7 +68,7 @@ Item {
         ListView{
             id:songsList
             height: 560
-            width: 1360
+            width: parent.width
             clip: true
             y:400
             interactive: true
@@ -76,9 +78,8 @@ Item {
                 source: "qrc:/view/components/songCard.qml"
                 onLoaded: {
                     item.backgroundColor = index % 2 == 0? "#EEEEEE" : "#E0EAFF"
-                    item.width =  songsList.width
+                    item.width = Qt.binding(function(){return songsList.width})
                     item.height = 56
-
                 }
             }
 //            MouseArea{
