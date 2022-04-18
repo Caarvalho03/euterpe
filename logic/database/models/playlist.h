@@ -25,11 +25,11 @@ private:
 
 public:
     //Constructors
-    Playlist(QString name, QString pathImage);
+    Playlist(QString name, QString pathImage, int id=0);
     Playlist(QVariantMap map);
 
     //CRUD
-    int save();
+    bool save();
     bool update();
     bool destroy();
 

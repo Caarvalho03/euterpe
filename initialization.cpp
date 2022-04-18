@@ -10,3 +10,8 @@ void Initialization::createDatabase()
 {
     Database::createConnection();
 }
+
+void Initialization::createTables()
+{
+    Playlist::createTable();
+}

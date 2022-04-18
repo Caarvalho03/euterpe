@@ -10,6 +10,7 @@ class Initialization
 public:
     Initialization();
     static void createDatabase();
+    static void createTables();
 
     void test();
 };
