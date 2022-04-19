@@ -5,14 +5,21 @@ import "view/components"
 
 
 Window{
-    id:window
-    width: 1440
-    height: 1024
+    id:root
+    width: Screen.desktopAvailableWidth
+    height: Screen.desktopAvailableHeight
     maximumHeight: 1024
-    maximumWidth: 1440
+    maximumWidth: Screen.desktopAvailableWidth
     minimumWidth: 665
     visible: true
+    x:-1
+    y:-1
     title: qsTr("Hello World")
+
+    FontLoader{
+        id:openSans
+        source: "qrc:/view/assets/fonts/OpenSans_SemiCondensed-SemiBold.ttf"
+    }
 
     Rectangle{
         id:sideBar

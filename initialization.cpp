@@ -1,5 +1,5 @@
 #include "initialization.h"
-#include "../viniciusql/viniciusql.h""
+
 
 Initialization::Initialization()
 {
@@ -14,4 +14,10 @@ void Initialization::createDatabase()
 void Initialization::createTables()
 {
     Playlist::createTable();
+}
+
+void Initialization::createTypes()
+{
+    qmlRegisterType<PlaylistController>("Source", 1, 0, "PlaylistController");
+
 }

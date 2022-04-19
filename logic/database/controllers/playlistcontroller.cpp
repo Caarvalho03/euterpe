@@ -24,12 +24,11 @@ bool PlaylistController::destroy(QVariantMap map)
     return playlist.destroy();
 }
 
-QList<QVariantMap> PlaylistController::getAll(QStringList columns)
+QVariantList PlaylistController::getAll(QStringList columns)
 {
     return Playlist::getAll(columns);
 }
-
-QList<QVariantMap> PlaylistController::getByProperty(QStringList columns, QString property, QVariant value)
+QVariantList PlaylistController::getByProperty(QStringList columns, QString property, QVariant value)
 {
     return Playlist::getByProperty(columns, property, value);
 }

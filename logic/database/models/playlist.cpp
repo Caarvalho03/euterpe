@@ -71,12 +71,23 @@ QByteArray Playlist::byteArrayFromPath(QString path)
 
 }
 
-QList<QVariantMap> Playlist::getAll(QStringList columns)
+QVariantList Playlist::getAll(QStringList columns)
 {
-    return table.select(columns)->finishSelect();
+    QVariantList list = table.select(columns)->finishSelect();
+    if(columns.contains("pathImage")){
+        QVariantList _list;
+        for(int i=0; i<list.size(); i++){
+            QString base64 = Playlist::pathFromByteArray(list[i].toMap()["pathImage"].toByteArray());
+            QVariantMap map = list[i].toMap();
+            map["pathImage"] = base64;
+            _list.append(map);
+        }
+        return _list;
+    }
+    else return list;
 }
 
-QList<QVariantMap> Playlist::getByProperty(QStringList columns, QString property, QVariant value)
+QVariantList Playlist::getByProperty(QStringList columns, QString property, QVariant value)
 {
     return table.select(columns)->equals(property, value)->finishSelect();
 }

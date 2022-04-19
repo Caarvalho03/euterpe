@@ -41,8 +41,8 @@ public:
     static QByteArray byteArrayFromPath(QString path);
 
     //Search
-    static QList<QVariantMap> getAll(QStringList columns);
-    static QList<QVariantMap> getByProperty(QStringList columns, QString property, QVariant value);
+    static QVariantList getAll(QStringList columns);
+    static QVariantList getByProperty(QStringList columns, QString property, QVariant value);
 
     //Table
     static bool createTable();

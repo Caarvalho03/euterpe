@@ -7,5 +7,11 @@
         <file>view/screens/songsPage.qml</file>
         <file>view/components/songCard.qml</file>
         <file>view/assets/images/drag.svg</file>
+        <file>view/assets/fonts/OpenSans_SemiCondensed-SemiBold.ttf</file>
+        <file>view/assets/fonts/OpenSans_Condensed-Italic.ttf</file>
+        <file>view/dialogs/PlaylistRegistrationDialog.qml</file>
+        <file>view/components/noPlaylistCard.qml</file>
+        <file>view/assets/images/add_circle.svg</file>
+        <file>view/assets/images/add_white.svg</file>
     </qresource>
 </RCC>

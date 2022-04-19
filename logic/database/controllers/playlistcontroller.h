@@ -13,8 +13,8 @@ public:
     Q_INVOKABLE bool save(QVariantMap map);
     Q_INVOKABLE bool update(QVariantMap map);
     Q_INVOKABLE bool destroy(QVariantMap map);
-    Q_INVOKABLE QList<QVariantMap> getAll(QStringList columns);
-    Q_INVOKABLE QList<QVariantMap> getByProperty(QStringList columns, QString property, QVariant value);
+    Q_INVOKABLE QVariantList getAll(QStringList columns);
+    Q_INVOKABLE QVariantList getByProperty(QStringList columns, QString property, QVariant value);
 
 signals:
     void refresh();
