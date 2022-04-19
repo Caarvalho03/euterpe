@@ -6,6 +6,7 @@ QT += quick quickcontrols2 sql core
 
 SOURCES += \
         initialization.cpp \
+        logic/database/controllers/playlistcontroller.cpp \
         logic/database/database.cpp \
         logic/database/models/audio.cpp \
         logic/database/models/playlist.cpp \
@@ -26,6 +27,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     initialization.h \
+    logic/database/controllers/playlistcontroller.h \
     logic/database/database.h \
     logic/database/models/audio.h \
     logic/database/models/playlist.h
