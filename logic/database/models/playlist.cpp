@@ -71,6 +71,16 @@ QByteArray Playlist::byteArrayFromPath(QString path)
 
 }
 
+QList<QVariantMap> Playlist::getAll(QStringList columns)
+{
+    return table.select(columns)->finishSelect();
+}
+
+QList<QVariantMap> Playlist::getByProperty(QStringList columns, QString property, QVariant value)
+{
+    return table.select(columns)->equals(property, value)->finishSelect();
+}
+
 bool Playlist::createTable()
 {
     table.setSql(QString("create table if not exists %1("

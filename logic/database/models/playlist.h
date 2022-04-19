@@ -40,6 +40,10 @@ public:
     static QString pathFromByteArray(QByteArray data);
     static QByteArray byteArrayFromPath(QString path);
 
+    //Search
+    static QList<QVariantMap> getAll(QStringList columns);
+    static QList<QVariantMap> getByProperty(QStringList columns, QString property, QVariant value);
+
     //Table
     static bool createTable();
     static bool dropTable();
