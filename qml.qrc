@@ -13,5 +13,8 @@
         <file>view/components/noPlaylistCard.qml</file>
         <file>view/assets/images/add_circle.svg</file>
         <file>view/assets/images/add_white.svg</file>
+        <file>view/components/V_TextField.qml</file>
+        <file>view/assets/images/image.svg</file>
+        <file>view/components/V_Button.qml</file>
     </qresource>
 </RCC>

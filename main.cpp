@@ -10,6 +10,9 @@ int main(int argc, char *argv[])
 #endif
     QGuiApplication app(argc, argv);
 
+    app.setOrganizationName("madhatter");
+    app.setOrganizationDomain("madhatter.com");
+
     Initialization::createDatabase();
     Initialization::createTables();
     Initialization::createTypes();

@@ -48,11 +48,6 @@ public:
     static bool createTable();
     static bool dropTable();
     static bool clearTable();
-
-
-
-
-
 };
 
 #endif // PLAYLIST_H

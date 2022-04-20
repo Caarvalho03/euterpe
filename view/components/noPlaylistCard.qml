@@ -6,6 +6,7 @@ Item {
     id:item
     width: 345
     height: 345
+    signal openDialog
 
     Rectangle{
         id:background
@@ -47,6 +48,11 @@ Item {
                     horizontalCenter: parent.horizontalCenter
                 }
             }
+        }
+        MouseArea{
+            id:cardArea
+            anchors.fill: parent
+            onClicked: openDialog()
         }
     }
 }

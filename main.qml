@@ -16,6 +16,9 @@ Window{
     y:-1
     title: qsTr("Hello World")
 
+    property color mainColor: "#ff00ff"
+    property color secondColor:"black"
+    property color grayGradientColor:"#1C1C1C"
     FontLoader{
         id:openSans
         source: "qrc:/view/assets/fonts/OpenSans_SemiCondensed-SemiBold.ttf"

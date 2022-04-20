@@ -9,19 +9,31 @@ PlaylistController::PlaylistController(QObject *parent)
 bool PlaylistController::save(QVariantMap map)
 {
     Playlist playlist(map);
-    return playlist.save();
+    if(playlist.save()){
+        emit refresh();
+        return true;
+    }
+    return false;
 }
 
 bool PlaylistController::update(QVariantMap map)
 {
     Playlist playlist(map);
-    return playlist.update();
+    if (playlist.update()){
+        emit refresh();
+        return true;
+    }
+    return false;
 }
 
 bool PlaylistController::destroy(QVariantMap map)
 {
     Playlist playlist(map);
-    return playlist.destroy();
+    if(playlist.destroy()){
+        emit refresh();
+        return true;
+    }
+    return false;
 }
 
 QVariantList PlaylistController::getAll(QStringList columns)
