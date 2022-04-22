@@ -26,7 +26,7 @@ bool PlaylistController::update(QVariantMap map)
     return false;
 }
 
-bool PlaylistController::destroy(QVariantMap map)
+bool PlaylistController::remove(QVariantMap map)
 {
     Playlist playlist(map);
     if(playlist.destroy()){

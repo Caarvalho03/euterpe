@@ -10,13 +10,17 @@ Dialog {
     closePolicy: Popup.NoAutoClose
     height:480
     width: 400
-    property alias internal:internal
 
+    property alias internal:internal
+    property bool editingMode:false
     property var playlist: {
+        "id": 0,
         "name": "nome",
         "pathImage": "imagem"
     }
+
     signal newPlaylist(var obj)
+    signal updatePlaylist(var obj)
 
     QtObject{
         id:internal
@@ -25,6 +29,12 @@ Dialog {
             dialog.open()
             background.state = "open"
 
+        }
+
+        function openEditMode(id){
+            playlist.id = id
+            dialog.editingMode = true
+            _open()
         }
 
         function _close(){
@@ -43,7 +53,10 @@ Dialog {
             else
                 setWarningText(" \nImagem inválida ")
             if(playlistTitleField.text.length > 0 && fileDialog.fileUrl != ""){
-                newPlaylist(playlist)
+                if(editingMode)
+                    updatePlaylist(playlist)
+                else
+                    newPlaylist(playlist)
                 internal._close()
                 internal.resetForm()
             }
@@ -51,6 +64,7 @@ Dialog {
         }
 
         function clearObject(){
+            playlist.id = 0
             playlist.name = ""
             playlist.imagePath = ""
         }
@@ -66,6 +80,7 @@ Dialog {
         }
 
         function resetForm(){
+            editingMode = false
             imageField.anchors.fill = undefined
             imageField.height = 50
             imageField.width = 50

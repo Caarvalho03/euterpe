@@ -12,16 +12,22 @@ Item {
         id:background
         anchors.fill: parent
         clip: true
-        color: "#EEEEEE"
+        color: "transparent"
+        radius:10
+        border{
+            color: mainColor
+            width: 2
+        }
         Rectangle{
             width: 0.8 * parent.width
             height: 0.8 * parent.height
+            radius:10
             anchors.centerIn: parent
             border{
-                width: 1
-                color: "gray"
+                width: 2
+                color: mainColor
             }
-            color: "#EEEEEE"
+            color: "transparent"
             Image{
                 id:plusImage
                 anchors.centerIn: parent
@@ -30,7 +36,7 @@ Item {
                 fillMode: Image.PreserveAspectFit
                 source: "qrc:/view/assets/images/add_white.svg"
                 ColorOverlay{
-                    color:"gray"
+                    color:mainColor
                     source:parent
                     anchors.fill: parent
                 }
@@ -38,6 +44,7 @@ Item {
             Text{
                 id:addPlayListText
                 text:"Adicione uma nova playlist"
+                color:mainColor
                 font{
                     pixelSize: 20
                     family:openSans.name

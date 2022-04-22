@@ -14,11 +14,11 @@ Playlist::Playlist(QString name, QString pathImage, int id)
 
 Playlist::Playlist(QVariantMap map)
 {
+    this->id =  map.count("id")? map.value("id").toInt() : 0;
     this->name = map.count("name")? map.value("name").toString() : "";
     this->pathImage = map.count("pathImage")? map.value("pathImage").toString() : "";
-    this->id =  map.count("id")? map.value("id").toInt() : 0;
-    this->played = 0;
-    this->quantity_musics = 0;
+    this->played = map.count("played")? map.value("played").toInt() : 0;
+    this->quantity_musics = map.count("quantity_musics")? map.value("quantity_musics").toInt() : 0;
 }
 
 bool Playlist::save()

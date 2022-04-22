@@ -18,5 +18,7 @@
         <file>view/components/V_Button.qml</file>
         <file>view/assets/images/close.svg</file>
         <file>view/assets/images/close_rounded.svg</file>
+        <file>view/assets/images/delete.svg</file>
+        <file>view/assets/images/edit.svg</file>
     </qresource>
 </RCC>

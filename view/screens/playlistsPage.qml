@@ -40,9 +40,13 @@ Item {
 
         }
 
-        function deletePlaylist(id){
-
+        function deletePlaylist(obj){
+            console.log(controller.remove(obj))
         }
+    }
+
+    PlaylistController{
+        id:controller
     }
 
     ListModel{
@@ -53,13 +57,10 @@ Item {
         id:moreListenedPlaylistModel
     }
 
-    PlaylistController{
-        id:controller
-    }
-
     Connections{
         target: controller
         function onRefresh(){
+            console.log("refresh")
             internal.fillPlaylistsList()
         }
     }
@@ -67,9 +68,11 @@ Item {
     Rectangle{
         id:background
         anchors.fill: parent
+        color:"transparent"
         Text{
             id:playlistListLabel
             text: qsTr("SUAS PLAYLISTS")
+            color:mainColor
             font{
                 pixelSize: 25
                 family: openSans.name
@@ -93,8 +96,10 @@ Item {
                         return "qrc:/view/components/playlistCard.qml"
                     return "qrc:/view/components/noPlaylistCard.qml" }
                 onLoaded: {
-                    if(modelData.position !== 0)
+                    if(modelData.position !== 0){
                         item.internal.load(modelData.id,modelData.pathImage, modelData.name)
+                        item.deleteCard.connect(internal.deletePlaylist)
+                    }
                     else
                         item.openDialog.connect(internal.openDialog)
                 }
@@ -110,6 +115,7 @@ Item {
         Text{
             id:moreListenedPlaylistListLabel
             text: qsTr("MAIS OUVIDAS")
+            color:mainColor
             font{
                 pixelSize: 25
                 family: openSans.name
