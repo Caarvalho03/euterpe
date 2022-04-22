@@ -8,6 +8,7 @@ Item {
     id:playlistPage
     property var playlistModel:[]
     property int contador:1
+    focus:true
 
     Component.onCompleted:{
         internal.fillPlaylistsList()
@@ -25,14 +26,22 @@ Item {
                               playlistPage.playlistModel.push(obj)
                               contador++
                           })
-            playlistList.model =  playlistPage.playlistModel
+            playlistList.model = playlistPage.playlistModel
         }
         function openDialog(){
-            playlistRegistrationDialog.open()
+            playlistRegistrationDialog.internal._open()
         }
 
         function newPlaylist(obj){
             controller.save(obj)
+        }
+
+        function updatePlaylist(obj, id){
+
+        }
+
+        function deletePlaylist(id){
+
         }
     }
 

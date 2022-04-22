@@ -16,5 +16,7 @@
         <file>view/components/V_TextField.qml</file>
         <file>view/assets/images/image.svg</file>
         <file>view/components/V_Button.qml</file>
+        <file>view/assets/images/close.svg</file>
+        <file>view/assets/images/close_rounded.svg</file>
     </qresource>
 </RCC>
