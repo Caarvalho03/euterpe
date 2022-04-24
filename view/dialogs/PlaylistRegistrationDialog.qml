@@ -13,10 +13,13 @@ Dialog {
 
     property alias internal:internal
     property bool editingMode:false
+
+    property string editableFileUrl
+
     property var playlist: {
         "id": 0,
-        "name": "nome",
-        "pathImage": "imagem"
+        "name": "",
+        "pathImage": ""
     }
 
     signal newPlaylist(var obj)
@@ -24,16 +27,41 @@ Dialog {
 
     QtObject{
         id:internal
-
-        function _open(){
-            dialog.open()
-            background.state = "open"
-
+        function fullImage(){
+            colorOverlay.visible = false
+            imageField.anchors.fill = imageField.parent
         }
 
-        function openEditMode(id){
-            playlist.id = id
+        function setImage(url){
+            editableFileUrl = url
+            imageField.source = editableFileUrl
+        }
+
+        function defaultImage(){
+            imageField.anchors.fill = undefined
+            imageField.height = 50
+            imageField.width = 50
+            imageField.anchors.centerIn = imageField.parent
+            imageField.source = "qrc:/view/assets/images/image.svg"
+        }
+
+        function _open(){
+            console.log(fileDialog.fileUrl)
+            dialog.open()
+            background.state = "open"
+        }
+
+        function fillForm(){
+            playlistTitleField.text = playlist.name
+            imageField.source = ""
+            internal.fullImage()
+            imageField.source = playlist.pathImage
+        }
+
+        function openEditMode(obj){
+            playlist  = obj
             dialog.editingMode = true
+            fillForm()
             _open()
         }
 
@@ -44,29 +72,31 @@ Dialog {
         }
         function fillObject(){
             removeWarningText()
-            if(playlistTitleField.text.length > 0)
+            if(playlistTitleField.text != "")
                 playlist.name = playlistTitleField.text
             else
                 setWarningText(" Título inválido")
-            if(fileDialog.fileUrl != "")
-                playlist.pathImage = fileDialog.fileUrl
+            if(imageField.source != "qrc:/view/assets/images/image.svg")
+                playlist.pathImage = editableFileUrl
             else
                 setWarningText(" \nImagem inválida ")
-            if(playlistTitleField.text.length > 0 && fileDialog.fileUrl != ""){
+            console.log("name " + playlist.name !== "")
+            console.log("imagepath " + playlist.pathImage !== "")
+            if(playlistTitleField.text !== "" && imageField.source != "qrc:/view/assets/images/image.svg"){
                 if(editingMode)
                     updatePlaylist(playlist)
                 else
                     newPlaylist(playlist)
                 internal._close()
-                internal.resetForm()
             }
-            clearObject()
         }
 
         function clearObject(){
             playlist.id = 0
             playlist.name = ""
-            playlist.imagePath = ""
+            playlist.pathImage = ""
+            playlist.played = 0
+            playlist.quantity_musics = 0
         }
 
         function setWarningText(text){
@@ -81,22 +111,19 @@ Dialog {
 
         function resetForm(){
             editingMode = false
-            imageField.anchors.fill = undefined
-            imageField.height = 50
-            imageField.width = 50
-            imageField.anchors.centerIn = imageField.parent
-            imageField.source = "qrc:/view/assets/images/image.svg"
             colorOverlay.visible = true
-
             playlistTitleField.text = ""
+            editableFileUrl = ""
+            defaultImage()
             removeWarningText()
+            clearObject()
         }
     }
 
     Timer{
         id:closeTimer
         interval: 250
-        onTriggered: dialog.close()
+        onTriggered: {internal.resetForm(); dialog.close();}
     }
 
     background: Rectangle{
@@ -254,7 +281,7 @@ Dialog {
             id:submitButton
             height: 40
             width:100
-            buttonText: qsTr("SALVAR")
+            buttonText: editingMode?  qsTr("EDITAR "):qsTr("SALVAR")
             anchors{
                 top: imageContainer.bottom
                 topMargin: 20
@@ -281,9 +308,8 @@ Dialog {
             folder: shortcuts.pictures
             nameFilters: ["*.png *.jfif *.jpg"]
             onAccepted: {
-                imageField.source = fileUrl
-                colorOverlay.visible = false
-                imageField.anchors.fill = imageField.parent
+                internal.setImage(fileUrl)
+                internal.fullImage()
             }
         }
     }

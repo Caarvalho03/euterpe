@@ -48,6 +48,14 @@ public:
     static bool createTable();
     static bool dropTable();
     static bool clearTable();
+
+    //Gettes e Setters
+    int getId() const;
+    void setId(int newId);
+    const QString &getName() const;
+    void setName(const QString &newName);
+    const QString &getPathImage() const;
+    void setPathImage(const QString &newPathImage);
 };
 
 #endif // PLAYLIST_H

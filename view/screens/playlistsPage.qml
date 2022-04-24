@@ -12,7 +12,6 @@ Item {
 
     Component.onCompleted:{
         internal.fillPlaylistsList()
-        //playlistRegistrationDialog.open()
     }
 
     QtObject{
@@ -36,12 +35,19 @@ Item {
             controller.save(obj)
         }
 
-        function updatePlaylist(obj, id){
+        function openEditPlaylistDialog(id){
+            let obj = controller.getByProperty(["*"], "id", id)[0]
+            console.log(obj.name)
+            playlistRegistrationDialog.internal.openEditMode(obj)
 
         }
 
-        function deletePlaylist(obj){
-            console.log(controller.remove(obj))
+        function editPlaylist(obj){
+            controller.update(obj)
+        }
+
+        function deletePlaylist(id){
+            controller.remove({"id":id})
         }
     }
 
@@ -60,7 +66,6 @@ Item {
     Connections{
         target: controller
         function onRefresh(){
-            console.log("refresh")
             internal.fillPlaylistsList()
         }
     }
@@ -99,6 +104,7 @@ Item {
                     if(modelData.position !== 0){
                         item.internal.load(modelData.id,modelData.pathImage, modelData.name)
                         item.deleteCard.connect(internal.deletePlaylist)
+                        item.editCard.connect(internal.openEditPlaylistDialog)
                     }
                     else
                         item.openDialog.connect(internal.openDialog)
@@ -154,6 +160,9 @@ Item {
         }
         onNewPlaylist: function(playlist){
             internal.newPlaylist(playlist)
+        }
+        onUpdatePlaylist: function (playlist) {
+            internal.editPlaylist(playlist)
         }
     }
 }

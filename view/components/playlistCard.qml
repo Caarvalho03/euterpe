@@ -19,7 +19,7 @@ Item {
     }
 
     signal editCard(int id)
-    signal deleteCard(var obj)
+    signal deleteCard(int id)
 
     QtObject{
         id:internal
@@ -35,6 +35,7 @@ Item {
         clip: true
         color: "transparent"
         radius:10
+
         Rectangle{
             id:imageRect
             height: parent.height - bottomBar.height
@@ -123,15 +124,10 @@ Item {
                         backgroundColor: "transparent"
                         icon.source: "qrc:/view/assets/images/delete.svg"
                         icon.color: mainColor
-                        onClicked: {
-                            playlist.id = id;
-                            console.log("investigação: " + playlist.id)
-                            deleteCard(playlist)
-                        }
+                        onClicked: deleteCard(id)
                     }
                 }
             }
-
             anchors{
                 bottom: parent.bottom
                 left: parent.left

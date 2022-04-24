@@ -3,6 +3,36 @@
 QString Playlist::table_name = "playlist";
 Viniciusql Playlist::table = Viniciusql(table_name);
 
+int Playlist::getId() const
+{
+    return id;
+}
+
+void Playlist::setId(int newId)
+{
+    id = newId;
+}
+
+const QString &Playlist::getName() const
+{
+    return name;
+}
+
+void Playlist::setName(const QString &newName)
+{
+    name = newName;
+}
+
+const QString &Playlist::getPathImage() const
+{
+    return pathImage;
+}
+
+void Playlist::setPathImage(const QString &newPathImage)
+{
+    pathImage = newPathImage;
+}
+
 Playlist::Playlist(QString name, QString pathImage, int id)
 {
     this->name = name;
@@ -16,7 +46,7 @@ Playlist::Playlist(QVariantMap map)
 {
     this->id =  map.count("id")? map.value("id").toInt() : 0;
     this->name = map.count("name")? map.value("name").toString() : "";
-    this->pathImage = map.count("pathImage")? map.value("pathImage").toString() : "";
+    this->pathImage = map.count("pathImage") && map.value("pathImage").toString().startsWith("file")? map.value("pathImage").toString() : "";
     this->played = map.count("played")? map.value("played").toInt() : 0;
     this->quantity_musics = map.count("quantity_musics")? map.value("quantity_musics").toInt() : 0;
 }
@@ -40,7 +70,8 @@ QVariantMap Playlist::toMap()
 {
     QVariantMap map;
     map.insert("name", this->name);
-    map.insert("pathImage", byteArrayFromPath(this->pathImage));
+    if(this->pathImage != "")
+        map.insert("pathImage", byteArrayFromPath(this->pathImage));
     map.insert("played", this->played);
     map.insert("quantity_musics", this->quantity_musics);
     return map;
@@ -89,7 +120,18 @@ QVariantList Playlist::getAll(QStringList columns)
 
 QVariantList Playlist::getByProperty(QStringList columns, QString property, QVariant value)
 {
-    return table.select(columns)->equals(property, value)->finishSelect();
+    QVariantList list = table.select(columns)->equals(property, value)->finishSelect();
+    if(columns.contains("pathImage") || columns.contains("*")){
+        QVariantList _list;
+        for(int i=0; i<list.size(); i++){
+            QString base64 = Playlist::pathFromByteArray(list[i].toMap()["pathImage"].toByteArray());
+            QVariantMap map = list[i].toMap();
+            map["pathImage"] = base64;
+            _list.append(map);
+        }
+        return _list;
+    }
+    else return list;
 }
 
 bool Playlist::createTable()
