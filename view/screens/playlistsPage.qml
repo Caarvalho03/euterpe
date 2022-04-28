@@ -49,6 +49,10 @@ Item {
         function deletePlaylist(id){
             controller.remove({"id":id})
         }
+
+        function openPlaylist(id){
+            routes.replace("qrc:/view/screens/songsPage.qml", {"playlistId":id})
+        }
     }
 
     PlaylistController{
@@ -92,7 +96,7 @@ Item {
             id:playlistList
             spacing:20
             width: 1317
-            height: 345
+            height: 370
             orientation: ListView.Horizontal
             boundsBehavior:Flickable.StopAtBounds
             clip:true
@@ -105,6 +109,7 @@ Item {
                         item.internal.load(modelData.id,modelData.pathImage, modelData.name)
                         item.deleteCard.connect(internal.deletePlaylist)
                         item.editCard.connect(internal.openEditPlaylistDialog)
+                        item.openPlaylist.connect(internal.openPlaylist)
                     }
                     else
                         item.openDialog.connect(internal.openDialog)

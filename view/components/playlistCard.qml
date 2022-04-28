@@ -20,6 +20,7 @@ Item {
 
     signal editCard(int id)
     signal deleteCard(int id)
+    signal openPlaylist(int id)
 
     QtObject{
         id:internal
@@ -32,17 +33,31 @@ Item {
     Rectangle{
         id:background
         anchors.fill: parent
-        clip: true
         color: "transparent"
         radius:10
+
+        MouseArea{
+            anchors.fill: parent
+            hoverEnabled: true
+            onClicked: openPlaylist(id)
+            onHoveredChanged: {
+                if(containsMouse){
+                    item.scale = 1.05
+                    item.y += 10
+                }
+                else{
+                    item.scale = 1
+                    item.y -= 10
+                }
+            }
+        }
 
         Rectangle{
             id:imageRect
             height: parent.height - bottomBar.height
             width: parent.width
             radius:10
-            color:"white"
-            //clip:true
+            color:"gray"
             anchors{
                 top: parent.top
                 left: parent.left
@@ -60,12 +75,6 @@ Item {
                 }
             }
         }
-
-//        MouseArea{
-//            anchors.fill: parent
-//            hoverEnabled: true
-//            onClicked: console.log("cliquei")
-//        }
 
         Rectangle{
             id:radiusRepair
@@ -85,7 +94,6 @@ Item {
                 GradientStop{position:0.2 ; color: grayGradientColor}
                 GradientStop{position:1.0 ; color: secondColor}
             }
-            //color: "black"
             radius:10
             Row{
                 spacing:10

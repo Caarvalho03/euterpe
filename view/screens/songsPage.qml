@@ -6,6 +6,8 @@ Item {
     id:songPages
     width: parent.width
 
+    property int playlistId
+
     ListModel{
         id:songsModel
     }

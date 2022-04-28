@@ -33,6 +33,16 @@ void Playlist::setPathImage(const QString &newPathImage)
     pathImage = newPathImage;
 }
 
+int Playlist::getPlayed() const
+{
+    return played;
+}
+
+int Playlist::getQuantity_musics() const
+{
+    return quantity_musics;
+}
+
 Playlist::Playlist(QString name, QString pathImage, int id)
 {
     this->name = name;

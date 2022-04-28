@@ -42,8 +42,9 @@ Window{
                 height: 62
                 width: 62
                 icon.source: "qrc:/view/assets/images/play.svg"
+                icon.color:mainColor
                 background: Rectangle{
-                    color:"#C4C4C4"
+                    color:secondColor
                     height: 62
                     width: 62
                     radius:62/2

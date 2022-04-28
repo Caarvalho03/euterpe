@@ -56,6 +56,8 @@ public:
     void setName(const QString &newName);
     const QString &getPathImage() const;
     void setPathImage(const QString &newPathImage);
+    int getPlayed() const;
+    int getQuantity_musics() const;
 };
 
 #endif // PLAYLIST_H

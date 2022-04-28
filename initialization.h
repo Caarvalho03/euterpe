@@ -17,7 +17,7 @@ public:
     static void createTables();
     static void createTypes();
 
-    void test();
+    static void test();
 };
 
 #endif // INITIALIZATION_H
